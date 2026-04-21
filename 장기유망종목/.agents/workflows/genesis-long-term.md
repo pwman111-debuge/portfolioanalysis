@@ -202,7 +202,7 @@ description: 한국 주식 장기 유망 종목 발굴 (1~3년) 방법론
    - **현재가는 보고서 작성 시점에 네이버 증권 실시간 시세를 직접 확인**하여 기재 (추정·기억값 사용 금지)
    - 재무 수치는 반드시 `gene-scan.py` 출력값 또는 네이버 증권 재무분석 탭 원본과 대조 후 기재
    - Markdown 표 앞뒤 **빈 줄 1줄 필수** — 레이아웃 깨짐 방지
-   - 리포트 파일명 형식: `YYYYMMDD-genesis-long-report.mdx`
+   - 리포트 파일명 형식: `genesis_long_term_report_YYYYMMDD.md`
    - MDX 프론트매터 필수 항목:
      ```yaml
      ---
@@ -220,7 +220,7 @@ description: 한국 주식 장기 유망 종목 발굴 (1~3년) 방법론
    **6-1. 배포 전 최종 검수 체크리스트**
    - [ ] MDX 프론트매터 4개 필수 항목 (`title`, `date`, `ticker: "GENESIS"`, `category`) 모두 입력
    - [ ] Markdown 표 앞뒤 빈 줄 존재 여부 — 레이아웃 깨짐 방지
-   - [ ] 파일명 형식 확인: `YYYYMMDD-genesis-long-report.mdx`
+   - [ ] 파일명 형식 확인: `genesis_long_term_report_YYYYMMDD.md`
    - [ ] 수치 출처(네이버 증권 기준일) 누락 항목 없는지 확인
    - [ ] 손절가·목표가 투자 설계 요약표 최종 수치 이상 없는지 재검토
    - [ ] **3단계 `genesis_detail.json` 결과(52주 위치·PBR 밴드)가 종목별 분석에 반영되었는지 확인**
@@ -234,7 +234,7 @@ description: 한국 주식 장기 유망 종목 발굴 (1~3년) 방법론
 
    **6-3. 커밋 및 푸시 규칙**
    - 커밋 메시지 형식: `[Genesis] YYYY-MM-DD 장기유망종목 리포트 — {종목A}/{종목B}/{종목C}`
-   - 리포트 파일은 `/reports/` 디렉토리에 저장
+   - 리포트 파일은 `장기유망종목/reports/` 디렉토리에 저장
    - 기존 리포트 **덮어쓰기 금지** — 날짜별 신규 파일로 누적 관리
    - `push.md` 워크플로우를 통해 배포 실행
 
