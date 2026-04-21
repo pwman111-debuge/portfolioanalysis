@@ -14,7 +14,8 @@
       "WebFetch(domain:comp.wisereport.co.kr)",
       "WebFetch(domain:comp.fnguide.com)",
       "WebFetch(domain:infostock.co.kr)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(python3 -c ':*)"
     ]
   }
 }
