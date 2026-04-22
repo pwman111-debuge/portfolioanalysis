@@ -72,7 +72,7 @@
 
 ## GitHub Push 정책
 
-이 워크스페이스의 git remote는 `pwman111-debuge/claudecode` 단일 레포다.
+이 워크스페이스의 git remote는 `pwman111-debuge/portfolioanalysis` 단일 레포다.
 
 | 상황 | push 주체 |
 |------|----------|
