@@ -54,6 +54,17 @@ KOSDAQ | 2026.04.14 | 1,093.63
 
 ---
 
+## ⚠️ 순매매 상위 테이블 칼럼 주의
+
+네이버 증권 순매매 상위 페이지는 **두 날짜를 나란히 표시**한다.
+- **좌측 칼럼 = 전일 데이터** (오전 중에는 전전일일 수도 있음)
+- **우측 칼럼 = 당일(오늘) 데이터** ← 반드시 이 칼럼 사용
+
+HTML 파싱 시 첫 번째로 등장하는 종목/수치 블록은 전일(좌측)이다.
+당일 데이터는 HTML에서 두 번째 날짜 헤더 이후 블록에서 추출해야 한다.
+
+---
+
 ## [Function 2] 외국인 순매수 상위 종목
 
 ```python
@@ -66,6 +77,10 @@ for market, sosok in [('KOSPI', '01'), ('KOSDAQ', '02')]:
     req = urllib.request.Request(url, headers=HEADERS)
     with urllib.request.urlopen(req) as r:
         html = r.read().decode('euc-kr', errors='replace')
+    # 페이지에 전일/당일 두 칼럼이 있으므로 당일(우측) 섹션만 추출
+    dates = list(dict.fromkeys(re.findall(r'\d{2}\.\d{2}\.\d{2}', html)))
+    if len(dates) >= 2:
+        html = html[html.find(dates[1]):]  # 두 번째 날짜(당일) 이후만 사용
     items = re.findall(
         r'code=(\d{6})[^>]*>(.*?)</a>.*?class="number">([\d,\-]+)</td>.*?class="number">([\d,\-]+)</td>',
         html, re.DOTALL
@@ -95,6 +110,11 @@ url = 'https://finance.naver.com/sise/sise_deal_rank_iframe.naver?sosok=01&inves
 req = urllib.request.Request(url, headers=HEADERS)
 with urllib.request.urlopen(req) as r:
     html = r.read().decode('euc-kr', errors='replace')
+
+# 페이지에 전일/당일 두 칼럼이 있으므로 당일(우측) 섹션만 추출
+dates = list(dict.fromkeys(re.findall(r'\d{2}\.\d{2}\.\d{2}', html)))
+if len(dates) >= 2:
+    html = html[html.find(dates[1]):]  # 두 번째 날짜(당일) 이후만 사용
 
 items = re.findall(
     r'code=(\d{6})[^>]*>(.*?)</a>.*?class="number">([\d,\-]+)</td>.*?class="number">([\d,\-]+)</td>',
